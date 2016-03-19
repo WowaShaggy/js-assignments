@@ -22,7 +22,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    throw new Error('Not implemented');
+	return value1+value2;
 }
 
 
@@ -38,7 +38,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    throw new Error('Not implemented');
+	return value.length;
 }
 
 /**
@@ -55,7 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+	return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+    return value.slice(7,value.length-1);
 }
 
 
@@ -84,7 +84,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+	return value.charAt(0);
 }
 
 /**
@@ -99,7 +99,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+    return value.trim();
 }
 
 /**
@@ -114,7 +114,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+	return value.repeat(count);
 }
 
 /**
@@ -130,7 +130,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+    return str.replace(value,"");
 }
 
 /**
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    throw new Error('Not implemented');
+	return str.slice(1,str.length-1);
 }
 
 
@@ -160,7 +160,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+    return str.toUpperCase();
 }
 
 /**
@@ -174,7 +174,8 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    throw new Error('Not implemented');
+    return str.split(';');
+;
 }
 
 /**
@@ -201,7 +202,12 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+	let str = `┌${'─'.repeat(width-2)}┐\n`;
+	for (let i=0; i< height-2; i++){
+		str+=`│${' '.repeat(width-2)}│\n`;
+	}
+	str+= `└${'─'.repeat(width-2)}┘\n`
+	return str;
 }
 
 
@@ -221,7 +227,7 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    return str.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
 }
 
 /**
@@ -238,7 +244,9 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+	return value instanceof String || typeof value === "string"; 
+}
+	
 }
 
 
@@ -247,10 +255,10 @@ function isString(value) {
  * 
  * Playing cards inittial deck inclides the cards in the following order:
  * 
- *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
- *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
- *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
- *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
+ *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',   0-12
+ *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',	 13-25
+ *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',   26-38
+ *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'    39-51
  * 
  * (see https://en.wikipedia.org/wiki/Standard_52-card_deck)
  * Function returns the zero-based index of specified card in the initial deck above.
@@ -267,7 +275,49 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    if (+(value.charAt(0))>=2 && +(value.charAt(0))<=9){
+		switch(value.charAt(1)){
+			case '♣':return +(value.charAt(0))-1 ;break;
+			case '♦':return +(value.charAt(0))-1 + 13;break;
+			case '♥':return +(value.charAt(0))-1 + 13*2;break;
+			case '♠':return +(value.charAt(0))-1 + 13*3;break;
+		}
+	}else if (+(value.charAt(1))==0){
+		switch(value.charAt(2)){
+			case '♣':return 9 ;break;
+			case '♦':return 9 + 13;break;
+			case '♥':return 9 + 13*2;break;
+			case '♠':return 9 + 13*3;break;
+		}
+	}else if (value.charAt(0)=='A'){
+		switch(value.charAt(1)){
+			case '♣':return 0 ;break;
+			case '♦':return 13;break;
+			case '♥':return 13*2;break;
+			case '♠':return 13*3;break;
+		}
+	}else if (value.charAt(0)=='J'){
+		switch(value.charAt(1)){
+			case '♣':return 10 ;break;
+			case '♦':return 10+13;break;
+			case '♥':return 10+13*2;break;
+			case '♠':return 10+13*3;break;
+		}
+	}else if (value.charAt(0)=='Q'){
+		switch(value.charAt(1)){
+			case '♣':return 11 ;break;
+			case '♦':return 11+13;break;
+			case '♥':return 11+13*2;break;
+			case '♠':return 11+13*3;break;
+		}
+	}else if (value.charAt(0)=='K'){
+		switch(value.charAt(1)){
+			case '♣':return 12 ;break;
+			case '♦':return 12+13;break;
+			case '♥':return 12+13*2;break;
+			case '♠':return 12+13*3;break;
+		}
+	}
 }
 
 
