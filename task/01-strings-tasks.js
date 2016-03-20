@@ -252,7 +252,7 @@ function isString(value) {
 /**
  * Returns playid card id.
  * 
- * Playing cards inittial deck inclides the cards in the following order:
+ * Playing cards inittial deckreturn '♣♦♥♠'.indexOf(value.slice(-1))*13 + 'A234567891JQK'.indexOf(value.slice(0)); inclides the cards in the following order:
  * 
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',   0-12
  *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',	 13-25
@@ -274,49 +274,7 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    if (+(value.charAt(0))>=2 && +(value.charAt(0))<=9){
-		switch(value.charAt(1)){
-			case '♣':return +(value.charAt(0))-1 ;break;
-			case '♦':return +(value.charAt(0))-1 + 13;break;
-			case '♥':return +(value.charAt(0))-1 + 13*2;break;
-			case '♠':return +(value.charAt(0))-1 + 13*3;break;
-		}
-	}else if (+(value.charAt(1))==0){
-		switch(value.charAt(2)){
-			case '♣':return 9 ;break;
-			case '♦':return 9 + 13;break;
-			case '♥':return 9 + 13*2;break;
-			case '♠':return 9 + 13*3;break;
-		}
-	}else if (value.charAt(0)=='A'){
-		switch(value.charAt(1)){
-			case '♣':return 0 ;break;
-			case '♦':return 13;break;
-			case '♥':return 13*2;break;
-			case '♠':return 13*3;break;
-		}
-	}else if (value.charAt(0)=='J'){
-		switch(value.charAt(1)){
-			case '♣':return 10 ;break;
-			case '♦':return 10+13;break;
-			case '♥':return 10+13*2;break;
-			case '♠':return 10+13*3;break;
-		}
-	}else if (value.charAt(0)=='Q'){
-		switch(value.charAt(1)){
-			case '♣':return 11 ;break;
-			case '♦':return 11+13;break;
-			case '♥':return 11+13*2;break;
-			case '♠':return 11+13*3;break;
-		}
-	}else if (value.charAt(0)=='K'){
-		switch(value.charAt(1)){
-			case '♣':return 12 ;break;
-			case '♦':return 12+13;break;
-			case '♥':return 12+13*2;break;
-			case '♠':return 12+13*3;break;
-		}
-	}
+	return '♣♦♥♠'.indexOf(value.slice(-1))*13 + 'A234567891JQK'.indexOf(value.charAt(0));
 }
 
 
