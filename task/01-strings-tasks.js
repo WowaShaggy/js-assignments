@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    return value.slice(7,value.length-1);
+    return value.slice(7,-1);
 }
 
 
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-	return str.slice(1,str.length-1);
+	return str.slice(1,-1);
 }
 
 
