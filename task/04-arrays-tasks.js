@@ -225,15 +225,15 @@ function toArrayOfSquares(arr) {
  *     f[n] = x[0] + x[1] + x[2] +...+ x[n] 
  *  or f[n] = f[n-1] + x[n]
  * 
- * @param {array} arr
+ * @param {array} arr					
  * @return {array}
  * 
  * Example :
- *   [ 1, 1, 1, 1, 1 ]        => [ 1, 2, 3, 4, 5 ]				   			   //////map(1,0)=>slice(0,1)[1] reduce(1)=1  
- *   [ 10, -10, 10, -10, 10 ] => [ 10, 0, 10, 0, 10 ]   		   			    /////map(1,1)=>slice(0,2)[2] reduce(1+1)=2
- *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0] 					 			 ////map(1,2)=>slice(0,3)[3] reduce((1+1)=>(2+1))=3
- *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ] ///map(1,3)=>slice(0,4)[4] reduce((1+1)=>(2+1)=>(3+1))=4
- */																				   //map(1,3)=>slice(0,5)[5] reduce((1+1)=>(2+1)=>(3+1)=>(4+1))=5
+ *   [ 1, 1, 1, 1, 1 ]        => [ 1, 2, 3, 4, 5 ]				   			     
+ *   [ 10, -10, 10, -10, 10 ] => [ 10, 0, 10, 0, 10 ]   		   			     
+ *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0] 					 			 
+ *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
+ */																				   
 function getMovingSum(arr) {
 	return arr.map((x,i)=> arr.slice(0,i+1).reduce((a,b)=>a+b));
 }
@@ -269,7 +269,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   throw new Error('Not implemented');
+	   throw new Error('Not implemented');
 }
 
 
@@ -287,7 +287,7 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   throw new Error('Not implemented');
+  return arr.sort((a,b)=> b-a).slice(0,3);
 }
  
  
@@ -304,7 +304,7 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  */
 function getPositivesCount(arr) {
-   throw new Error('Not implemented');
+   return arr.filter((x)=>x>0).length;
 }
  
 /** 
@@ -321,7 +321,8 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   throw new Error('Not implemented');
+	let numbers = ['zero', 'one','two','three','four','five','six','seven','eight','nine'];
+	return arr.sort((a,b) => numbers.indexOf(a)-numbers.indexOf(b))
 }
 
 /** 
@@ -337,7 +338,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-   throw new Error('Not implemented');
+	return arr.reduce((a,b)=>a+b, 0);
 }
  
 /** 
@@ -353,7 +354,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-   throw new Error('Not implemented');
+   return arr.filter((value) => Boolean(value)==false).length;
 }
 
 /**
@@ -371,7 +372,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-   throw new Error('Not implemented');
+   return arr.filter((x)=>x===item).length;
 }
 
 /**
@@ -386,7 +387,7 @@ function findAllOccurences(arr, item) {
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
 function toStringList(arr) {
-   throw new Error('Not implemented');
+   return arr.toString();
 }
 
 
@@ -415,7 +416,7 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-   throw new Error('Not implemented');
+   return arr.sort((a,b)=>(a.country).localeCompare(b.country) || (a.city).localeCompare(b.city));
 }
 
 /**
@@ -437,7 +438,8 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+	let arr = new Array(n).fill(new Array(n).fill(0));
+	return arr.map((a,i)=> a.map((aa,ii)=>(i==ii)?1:0));
 }
 
 /**
@@ -454,7 +456,9 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   throw new Error('Not implemented');
+   let arr = new Array(end-start+1).fill(start);
+   return arr.map((a,i)=>a+i);
+   
 }
 
 /**
@@ -469,7 +473,7 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+   return arr.filter((e,i,a)=> a.indexOf(e)==i);
 }
 
 /**
@@ -559,7 +563,10 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+	let v = arr.length/2,
+	    l = arr.splice(0,v),
+		r = arr.splice(-v);
+		return r.concat(arr,l);
 }
 
 
